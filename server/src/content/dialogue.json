@@ -1,10 +1,26 @@
 {
   "areas": [
-    { "id": "life-story", "label": "Life story" },
-    { "id": "famous-gigs", "label": "Famous gigs" },
-    { "id": "guitars-technique", "label": "Guitars & technique" },
-    { "id": "music-albums", "label": "Music & albums" },
-    { "id": "general", "label": "Small talk", "tracked": false }
+    {
+      "id": "life-story",
+      "label": "Life story"
+    },
+    {
+      "id": "famous-gigs",
+      "label": "Famous gigs"
+    },
+    {
+      "id": "guitars-technique",
+      "label": "Guitars & technique"
+    },
+    {
+      "id": "music-albums",
+      "label": "Music & albums"
+    },
+    {
+      "id": "general",
+      "label": "Small talk",
+      "tracked": false
+    }
   ],
   "greeting": [
     {
@@ -28,8 +44,29 @@
       "area": "general",
       "keywords": ["hello", "hi", "hey"],
       "variants": [
-        { "text": "Hey there! Pull up a chair.", "weight": 50 },
-        { "text": "Hey, man. Good to see you.", "weight": 50 }
+        {
+          "text": "Hey there! Pull up a chair.",
+          "weight": 50
+        },
+        {
+          "text": "Hey, man. Good to see you.",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "id": "favourite-guitar",
+      "area": "guitars-technique",
+      "keywords": ["strat", "stratocaster", "fender", "guitar"],
+      "variants": [
+        {
+          "text": "It's gotta be the Strat, man. I'm left handed, so I like to flip em upside down and restring em.",
+          "weight": 40
+        },
+        {
+          "text": "People know me for the white Strat, Izabella, but I'm a sucker for my Black Beauty, my black Strat, not one cat close to me saw me without it.",
+          "weight": 60
+        }
       ]
     }
   ]
