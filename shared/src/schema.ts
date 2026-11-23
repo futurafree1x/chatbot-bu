@@ -47,4 +47,33 @@ export const IntentSchema = z.object({
   variants: VariantListSchema,
 });
 
+/* CLAUDE GENERATED - " The whole conversation file: topic areas, 
+'s greeting and fallback, and every intent.  Also checks that every intent belongs 
+to an area listed in `areas`. " */
+export const DialogueSchema = z
+  .object({
+    areas: z.array(TopicAreaSchema).min(1),
+    greeting: VariantListSchema,
+    fallback: VariantListSchema,
+    intents: z.array(IntentSchema).min(1),
+  })
+  .superRefine((dialogue, ctx) => {
+    const areaIds = dialogue.areas.map((area) => area.id);
+
+    dialogue.intents.forEach((intent, index) => {
+      if (!areaIds.includes(intent.area)) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `Unknown area "${intent.area}". Add it to "areas" first.`,
+          path: ['intents', index, 'area'],
+        });
+      }
+    });
+  });
+
+export type Variant = z.infer<typeof VariantSchema>;
+export type TopicArea = z.infer<typeof TopicAreaSchema>;
+export type Intent = z.infer<typeof IntentSchema>;
+export type Dialogue = z.infer<typeof DialogueSchema>;
+
 
