@@ -1,0 +1,54 @@
+/*
+ * The toggle sits on the header band, so it uses the header's colours.
+ * --color-on-header on --color-header-bg passes 4.5:1 in both themes (see tokens.test.ts).
+ */
+.toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  /* NFR-4: a comfortable touch target, even though the switch itself is smaller. */
+  min-width: var(--target-min);
+  min-height: var(--target-min);
+  padding: var(--space-1);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-on-header);
+  cursor: pointer;
+}
+
+/* The switch track. Its 2px border is the control's visible outline (WCAG SC 1.4.11). */
+.track {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 3rem;
+  height: 1.75rem;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-pill);
+}
+
+/* The sliding knob, which carries the sun or moon icon. */
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: currentColor;
+  transition: transform 150ms ease-out; /* removed under reduced motion (global.css) */
+}
+
+.toggle[aria-checked='true'] .thumb {
+  transform: translateX(1.25rem);
+}
+
+.icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--color-header-bg);
+}
