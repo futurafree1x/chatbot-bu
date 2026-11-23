@@ -32,4 +32,9 @@ export const KeywordSchema = z
   .string()
   .regex(/^[a-z0-9]+$/, 'keywords must be single lowercase words e.g. guitar or gig')
 
+export const TopicAreaSchema = z.object({   // topic areas can be added in json dialogue file
+  id: Id,
+  label: z.string().min(1).max(40),
+  tracked: z.boolean().default(true), // for small talk not counting towards exploration
+});
 
