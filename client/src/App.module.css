@@ -1,0 +1,56 @@
+/*
+ * Temporary page frame so the theme can be seen. Step 4 replaces it with the real Header
+ * component and the responsive chat layout.
+ */
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 48rem;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+/*
+ * On wide screens the chat moves to the right, so Hendrix in the background photo stays
+ * visible on the left instead of being hidden behind the panel.
+ */
+@media (min-width: 64rem) {
+  .app {
+    max-width: min(40rem, 46vw);
+    margin-right: 4vw;
+  }
+}
+
+/* Header band: a solid colour behind the text, so contrast never depends on the photo. */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-header-bg);
+  color: var(--color-on-header);
+  box-shadow: var(--shadow-panel);
+}
+
+.title {
+  font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2rem);
+  /*
+   * Shrikhand has extra built-in space above its letters, so the text sat slightly high.
+   * `text-box` trims the line box to run from the top of the capitals to the baseline, so the
+   * header's flex centring centres the actual letters. Browsers without it keep the old look.
+   */
+  text-box: trim-both cap alphabetic;
+}
+
+.main {
+  flex: 1;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-panel);
+}
