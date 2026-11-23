@@ -31,6 +31,6 @@ app.post('/api/messages', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Loaded ${dialogue.intents.length} intents across ${dialogue.areas.length} areas.`)
+  console.log(`Loaded ${dialogue.intents.length} intents across ${dialogue.areas.length} areas.`);
   console.log(`Server running at http://localhost:${PORT}`);
 });
