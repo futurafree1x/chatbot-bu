@@ -40,9 +40,19 @@ app.post(API_PATHS.messages, (req, res) => {
   if (!parsed.success) {
     const badIds = parsed.error.issues.some((issue) => issue.path[0] === 'discussedIntentIds');
     if (badIds) {
-      sendError(res, 400, 'INVALID_INTENT_IDS', 'discussedIntentIds must be unique kebab-case IDs.');
+      sendError(
+        res,
+        400,
+        'INVALID_INTENT_IDS',
+        'discussedIntentIds must be unique kebab-case IDs.',
+      );
     } else {
-      sendError(res, 400, 'INVALID_MESSAGE', `Message must be 1 to ${MESSAGE_MAX_LENGTH} characters.`);
+      sendError(
+        res,
+        400,
+        'INVALID_MESSAGE',
+        `Message must be 1 to ${MESSAGE_MAX_LENGTH} characters.`,
+      );
     }
     return;
   }

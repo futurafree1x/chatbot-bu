@@ -10,7 +10,12 @@ import type { ApiErrorBody, ApiErrorCode } from '@hendrix/shared';
  * @param code - Machine-readable error code from the contract.
  * @param message - Short, human-readable explanation.
  */
-export function sendError(res: Response, status: number, code: ApiErrorCode, message: string): void {
+export function sendError(
+  res: Response,
+  status: number,
+  code: ApiErrorCode,
+  message: string,
+): void {
   const body: ApiErrorBody = { error: { code, message } };
   res.status(status).json(body);
 }
