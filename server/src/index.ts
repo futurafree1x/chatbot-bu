@@ -15,7 +15,7 @@ app.get('/api/health', (req, res) => {
 app.post('/api/messages', (req, res) => {
   const message = req.body?.message;
 
-  // reject non text
+  // reject empty or non-text messages
   if (typeof message !== 'string' || message.trim() === '') {
     res.status(400).json({ error: 'Message must be non-empty text.' });
     return;
