@@ -82,6 +82,13 @@ export default defineConfig([
       'jsdoc/require-file-overview': 'error',
     },
   },
+  {
+    // Tests export nothing, so their small helpers only need a one-line description.
+    files: ['**/*.test.{ts,tsx}', 'e2e/**/*.ts'],
+    rules: {
+      'jsdoc/require-param': 'off',
+    },
+  },
   // Must come last: turns off ESLint rules that would fight Prettier's formatting.
   prettier,
 ]);
