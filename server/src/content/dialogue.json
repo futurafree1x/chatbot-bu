@@ -1,0 +1,36 @@
+{
+  "areas": [
+    { "id": "life-story", "label": "Life story" },
+    { "id": "famous-gigs", "label": "Famous gigs" },
+    { "id": "guitars-technique", "label": "Guitars & technique" },
+    { "id": "music-albums", "label": "Music & albums" },
+    { "id": "general", "label": "Small talk", "tracked": false }
+  ],
+  "greeting": [
+    {
+      "text": "Hey, come on in, man. You wanna know about the guitar, the gigs, the music? Go ahead and ask.",
+      "weight": 100
+    }
+  ],
+  "fallback": [
+    {
+      "text": "Whoa man, that one floated right past me. Ask me about my guitar, or Electric Ladyland.",
+      "weight": 60
+    },
+    {
+      "text": "I'm not sure I'm with you there, cat. People usually ask me about the Strat or the festivals.",
+      "weight": 40
+    }
+  ],
+  "intents": [
+    {
+      "id": "greeting",
+      "area": "general",
+      "keywords": ["hello", "hi", "hey"],
+      "variants": [
+        { "text": "Hey there! Pull up a chair.", "weight": 50 },
+        { "text": "Hey, man. Good to see you.", "weight": 50 }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,7 @@
 import express from 'express';
+import { loadDialogue } from './content/loadDialogue';
+
+const dialogue = loadDialogue();
 
 const app = express();
 const PORT = 3001;
@@ -12,7 +15,7 @@ app.get('/api/health', (req, res) => {
 app.post('/api/messages', (req, res) => {
   const message = req.body?.message;
 
-  // reject non text
+  // reject empty or non-text messages
   if (typeof message !== 'string' || message.trim() === '') {
     res.status(400).json({ error: 'Message must be non-empty text.' });
     return;
@@ -28,5 +31,6 @@ app.post('/api/messages', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(`Loaded ${dialogue.intents.length} intents across ${dialogue.areas.length} areas.`)
   console.log(`Server running at http://localhost:${PORT}`);
 });
