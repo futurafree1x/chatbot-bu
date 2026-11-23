@@ -1,0 +1,85 @@
+/*
+ * Design tokens: every colour, font and size the UI uses (FR 4.6, FR 4.7, NFR-1).
+ *
+ * How the themes work:
+ * - Each colour is written once as `light-dark(<light value>, <dark value>)`. The browser picks
+ *   the value that matches the element's `color-scheme`, so both themes live side by side here.
+ * - `color-scheme: light dark` (the default) follows the device setting (FR 4.7).
+ * - The toggle sets `data-theme` on <html>, which pins one scheme (FR 4.6).
+ *
+ * The palette takes its colours from the background photo: oxblood, brick red, amber and cream.
+ *
+ * Contrast: `tokens.test.ts` checks every text/background pair below against WCAG 2.2 AA
+ * (4.5:1 for text, 3:1 for borders and focus rings) in both themes. Keep those colours as
+ * 6-digit hex so the test can read them.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Page background, shown behind the photo while it loads. No text sits on it. */
+  --color-page-bg: light-dark(#f3e2cf, #120403);
+
+  /*
+   * A wash laid over the background photo. In the light theme it fades the photo towards
+   * cream; in the dark theme it deepens it. Decorative only: no text ever sits on the photo.
+   */
+  --color-photo-wash: light-dark(rgb(255 244 230 / 0.5), rgb(18 4 3 / 0.35));
+
+  /* Solid panels that hold text. */
+  --color-surface: light-dark(#fffaf3, #1f0b07);
+  --color-surface-alt: light-dark(#fbe7d4, #341610);
+  --color-text: light-dark(#2a1208, #fdeee4);
+  --color-text-muted: light-dark(#6b4636, #d9b9a8);
+  --color-border: light-dark(#a0705a, #b07e66);
+  --color-error: light-dark(#a3161b, #ffaaa5);
+
+  /* Header band. */
+  --color-header-bg: light-dark(#5c1306, #0d0302);
+  --color-on-header: light-dark(#fff1d6, #ffd27a);
+
+  /* Buttons and other controls. */
+  --color-accent: light-dark(#a82a0a, #ffb347);
+  --color-on-accent: light-dark(#ffffff, #2a1208);
+
+  /* The user's message bubbles (Jimi's use --color-surface-alt). */
+  --color-user-bubble: light-dark(#8a2a08, #ff8a3d);
+  --color-on-user-bubble: light-dark(#ffffff, #1f0b07);
+
+  /*
+   * Keyboard focus ring (NFR-2). Blue so it stands out against the warm palette, and checked
+   * against the surface, header and page colours.
+   */
+  --color-focus: light-dark(#3a78e8, #7db4ff);
+
+  /* Fonts. The display font is used for headings only; body text stays on the system font. */
+  --font-body: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Shrikhand', 'Cooper Black', Georgia, serif;
+
+  /* Spacing scale. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+
+  /* Shapes. */
+  --radius-sm: 0.5rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+  --focus-ring-width: 3px;
+
+  /* Lifts the solid panels off the photo. */
+  --shadow-panel: 0 0.5rem 2rem rgb(0 0 0 / 0.35);
+
+  /* NFR-4 / WCAG SC 2.5.8: controls are at least 24×24 px; we aim for 44 px on touch screens. */
+  --target-min: 2.75rem;
+}
+
+/* The theme toggle pins one scheme. Every light-dark() token above follows automatically. */
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}

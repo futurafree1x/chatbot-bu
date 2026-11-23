@@ -19,5 +19,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
+    // Vitest skips CSS by default. tokens.test.ts reads tokens.css as text to check contrast.
+    css: { include: [/tokens\.css/] },
   },
 });
